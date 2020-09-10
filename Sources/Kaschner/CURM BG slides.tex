@@ -1,0 +1,261 @@
+\documentclass[10pt,sanmathserif]{beamer}
+%\documentclass[10pt,handout,sanmathserif]{beamer}
+
+% Goal: no more than 32 frames
+
+\setbeamertemplate{navigation symbols}{}
+
+%\definecolor{UniBlue}{RGB}{83,121,170}
+%\setbeamercolor{title}{fg=UniBlue}
+%\setbeamercolor{frametitle}{fg=UniBlue}
+
+
+\usepackage{amssymb,bm}
+\usepackage[curve,color,dvips,graph]{xypic}
+\usepackage{graphics,epsfig}
+%\usepackage[usenames]{color}
+%\usepackage{pst-node}
+\usepackage{mathrsfs}
+
+% For guillemots, 
+% \guillemotleft and \guillemotright or just use >> or <<.
+\usepackage[T1]{fontenc}
+\frenchspacing
+
+%\documentclass[10pt]{beamer}
+%\usepackage{amssymb,amscd,amsmath,graphics,amsthm}
+%
+%\usetheme{Copenhagen}
+%\setbeamercovered{transparent}
+%\usefonttheme[onlylarge]{structurebold}
+%\setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
+%\setbeamertemplate{navigation symbols}{}
+%\setbeamertemplate{footline}[default]
+
+
+% Standard packages
+
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{epsfig}
+\usepackage{pst-node}
+\usepackage{tikz-cd} 
+\usepackage[all,cmtip]{xy}
+
+% Setup TikZ
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\tikzstyle{block}=[draw opacity=0.7,line width=1.4cm]
+
+\newenvironment<>{examplefirst}[1]{%
+  \setbeamercolor{block title}{fg=black,bg=purple!40!purple!50}%
+  \setbeamercolor{block body}{bg=purple!50!white!10}
+  \begin{block}#2{#1}}{\end{block}}
+\newenvironment<>{examplesecond}[1]{%
+  \setbeamercolor{block title}{fg=white,bg=green!50!black!60}%
+  \begin{block}#2{#1}}{\end{block}}
+\newenvironment<>{examplethird}[1]{%
+  \setbeamercolor{block title}{fg=black,bg=red!30!blue!40}%
+  \setbeamercolor{block body}{bg=red!30!blue!20}
+  \begin{block}#2{#1}}{\end{block}}
+  \newenvironment<>{examplefourth}[1]{%
+  \setbeamercolor{block title}{fg=white,bg=cyan}%
+  \setbeamercolor{block body}{bg=cyan!50!white!10}
+  \begin{block}#2{#1}}{\end{block}}
+
+
+
+\title[ ] 
+{Uniform Convergence\\ for Sequences of Iterates
+}
+
+\institute[ ]
+{
+Butler University
+
+\medskip
+
+}
+
+
+
+\date[ ]
+{
+\today}
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+
+
+\begin{frame}
+\frametitle{Iterates}
+
+\begin{examplefirst}{Definition}
+\vspace{12pt}
+
+Let $f:X\rightarrow X$; define the {$n^{\mbox{\footnotesize{th}}}$ iterate} of $f$ as 
+\[f^n := \overbrace{f \circ f\circ...\circ f}^{n}\]
+
+\end{examplefirst}
+
+\emph{Example:}
+\begin{center} 
+If $f(z)=z^2$, then $f^3(z)=z^2\circ z^2\circ z^2= (((z^2)^2)^2=z^8$
+\end{center}
+
+\pause
+
+\begin{examplefirst}{Definition}
+We say $x\in X$ is a fixed point of $f\colon X\rightarrow X$ if $f(x)=x$.
+\end{examplefirst}
+
+\emph{Example:}
+\begin{center} 
+If $f(z)=z^2$ then $f(0)=0$. Therefore 0 is a fixed point.  
+\end{center}
+\end{frame}
+
+
+
+
+
+\begin{frame}
+\frametitle{Old Theorems}
+
+\begin{examplefourth}{Denjoy-Wolff Theorem}
+
+If $\varphi\colon\mathbb D\rightarrow\mathbb D$ is analytic but neither the identity nor a rotation, then there exists a unique point $a\in\overline{\mathbb D}$ so that $\varphi^n$ converges to the constant function $a$ uniformly on compact subsets of $\mathbb D$.
+
+\end{examplefourth}
+
+\pause
+
+We call $a$ the Denjoy-Wolff point:
+\begin{itemize}
+\item If $a\in\mathbb D$, then $\varphi(a)=a$, and $f$ has no other fixed points;
+\item If $a\in\partial\overline{\mathbb D}$, then $\displaystyle \lim_{r\rightarrow1^-} \varphi(ra)=a$.
+\end{itemize}
+
+\end{frame}
+
+
+
+
+\begin{frame}{New Theorems}
+
+\begin{examplesecond}{Theorem 1 (Cowen, Ko, Thompson, Tiang 2014)}
+Suppose $\varphi\colon\overline{\mathbb D}\rightarrow\mathbb D$ is analytic on $\mathbb D$ and continuous on the boundary, $\partial\mathbb D$. If the Denjoy-Wolff point $a\in\mathbb D$, then $\varphi^n \rightarrow a$ uniformly \emph{on all of $\mathbb D$} if and only if there is $N>0$ such that $\varphi^N(\overline{\mathbb D})\subseteq \mathbb D$.
+\end{examplesecond}
+
+\vspace{12pt}
+\pause
+
+\begin{examplesecond}{Theorem 2 (Cowen, Ko, Thompson, Tiang 2014)}
+Suppose $\varphi\colon\overline{\mathbb D}\rightarrow\mathbb D$ is analytic on $\mathbb D$ and continuous on the boundary, $\partial\mathbb D$, and has Denjoy-Wolff point $a$ with $|a|=1$ and $\varphi'(a)<1$. If $\varphi^N(\mathbb D)\subseteq \mathbb D \cup \{a\}$ for some $N > 0$, then $\varphi^n\rightarrow a$ uniformly on all of $\mathbb D$.
+\end{examplesecond}
+
+\vspace{12pt}
+\pause
+
+\begin{examplefirst}{
+Definition}
+We say UCI (\emph{uniformly convergent iterates}) holds for $f\colon X\rightarrow X$ if $f^n$ \textit{converges uniformly on all of $X$ to a constant $a$}.   
+\end{examplefirst}
+\end{frame}
+
+\begin{frame}%{New Theorems}
+\begin{examplethird}{An Example}
+$\varphi(z)=\frac{1}{2}z+\frac{1}{2}$ has fixed point at 1 with $\varphi'(1)<1$.  Has UCI.
+\end{examplethird}
+
+\vspace{12pt}
+\pause
+
+\begin{examplethird}{Another Example}
+$\varphi(z)=1/(2-z)$ has fixed point at 1 with $\varphi'(1)=1$.  Has UCI.
+\end{examplethird}
+
+\vspace{12pt}
+\pause
+
+\begin{examplethird}{Generalized Example}
+If $\varphi$ is a linear fractional map with  DW point $|a|=1$ and $\varphi'(a)=1$ but not an automorphism, then UCI.
+\end{examplethird}
+
+\vspace{12pt}
+\pause
+
+\begin{examplethird}{An Annoying Example}
+$\varphi(z)=\frac{(z+1)k+(z-1)}{(z+1)k-(z-1)}$ for $k>1$ has $\varphi(1)=1$ and $\varphi(-1)=-1$.  NO UCI.
+\end{examplethird}
+\end{frame}
+
+
+
+\begin{frame}{More New Theorems}
+\begin{examplesecond}{Theorem 3 (Cowen, Ko, Thompson, Tiang 2014)}
+If 
+\begin{itemize}
+\item $\varphi\colon\overline{\mathbb D}\rightarrow\mathbb D$ is analytic on $\mathbb D$,
+\item $\varphi$ is continuous on $\partial\mathbb D$, and
+\item $\varphi^n(z)\rightarrow a$ uniformly on $\mathbb D$ and $|a|=1$, 
+\end{itemize}
+then $a$ is the only fixed point of $\varphi$ on the closed disk.
+\end{examplesecond}
+
+\vspace{12pt}
+
+\begin{examplesecond}{Theorem 4 (Glickfield, Kaschner 2018)}
+If 
+\begin{itemize}
+\item $\varphi\colon\overline{\mathbb D}\rightarrow\mathbb D$ is analytic on $\mathbb D$ and
+\item $\varphi^n(z)\rightarrow a$ uniformly on $\mathbb D$ and $|a|=1$, 
+\end{itemize}
+then $a$ is the only fixed point of $\varphi$ on the closed unit disk.
+\end{examplesecond}
+\end{frame}
+
+
+
+\begin{frame}{Problem(s)}
+
+\begin{center}
+When does UCI hold?\\\pause
+When is the fixed point unique?
+\end{center}
+
+\vspace{18pt}
+\pause
+
+What about $\varphi(z)=\frac{1}{2}z^2+\frac{1}{2}$?  
+
+\vspace{18pt}
+\pause
+
+Let's explore different domains:
+\begin{itemize}
+\item $\mathbb D^2$ (bi-disk)
+\item $\{\vec z\in\mathbb C^2\colon\|\vec z\|<1\}$ (unit ball)\pause
+\item bi-complex bi-disk and unit ball\pause
+\item $(-1,1)$
+\item $(-1,1)^2$ (real bi-disk or unit square)
+\item $\{\vec z\in\mathbb C^2\colon\|\vec z\|<1\}$ (real unit ball)
+\end{itemize}
+\end{frame}
+
+
+
+
+
+
+
+\end{document}
